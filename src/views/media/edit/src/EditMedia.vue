@@ -1,32 +1,17 @@
 <template>
   <div>
     <div class="n-layout-page-header">
-      
       <n-grid :x-gap="4">
         <n-grid-item span="15">
           <editproperty/>
         </n-grid-item>
         <n-grid-item span="9">
           <n-card :bordered="false">
-            <!-- <video ref="video" :src="mediaFileRef.mediaUrl" controls :autoplay="false" class="adjustvideo">
-            </video> -->
             <FileVideo />
-          <!-- <n-card :bordered="false">
-            <video ref="video" :src="mediaFileRef.mediaUrl" controls :autoplay="false">
-                            <track
-                              label="English"
-                              kind="subtitles"
-                              srclang="en"
-                              :src="mediaFileRef.subtltleUrl"
-                              default
-                            />
-            </video> -->
           </n-card>
         </n-grid-item>
       </n-grid>
     </div>
-    
-    
   </div>
   <Editsubtitle/>
 </template>

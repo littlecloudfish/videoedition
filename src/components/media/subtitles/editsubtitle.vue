@@ -1,6 +1,6 @@
 <template>
     <!-- <div>{{ data }}</div> -->
-    <n-card :bordered="false" size="small" title="字幕" class="proCard">
+    <n-card :bordered="false" size="small" title="Subtitle" class="proCard">
       <n-data-table
       :bordered="false"
       :single-line="false"
@@ -35,10 +35,10 @@ const actions:Array<string> = ['insert row','next','addtag']
 
 const createColumns = ({
   sendMail,
-  addTag
+  addRow
 }: {
   sendMail: (rowData : RowData) => void,
-  addTag: (rowData : RowData) => void,
+  addRow: (rowData : RowData) => void,
 }): DataTableColumns => {
   return [
     {
@@ -46,7 +46,7 @@ const createColumns = ({
       key: 'index',
     },
     {
-      title: '开始时间',
+      title: 'StartTime',
       key: 'startAt',
       render(row){
         return h(
@@ -59,7 +59,7 @@ const createColumns = ({
         })}
     },
     {
-      title: '结束时间',
+      title: 'EndTime',
       key: 'endAt',
       render(row){
         return h(
@@ -72,7 +72,7 @@ const createColumns = ({
         })}
     },
     {
-    title: '内容',
+    title: 'Content',
     key: 'text',
     width: 300,
     render(row){
@@ -88,7 +88,7 @@ const createColumns = ({
         })}
     },
     {
-    title: '校对状态',
+    title: 'Correct Status',
     key: 'verified',
     width: 100,
     render(row){
@@ -102,7 +102,7 @@ const createColumns = ({
         })}
     },
     {
-    title: '隐藏状态',
+    title: 'Hide Status',
     key: 'deleted',
     width: 100,
     render(row){
@@ -145,16 +145,12 @@ const createColumns = ({
             {
               size: 'small',
              onClick: () => {
-              if (tagKey == 'addtag'){
-                addTag(row)
+              if (tagKey == 'insert row'){
+                addRow(row)
               }
               else if (tagKey == 'next'){
                 sendMail(row)
               }
-              else if (tagKey == 'insert row'){
-
-              }
-
               }
             },
             {
@@ -169,7 +165,7 @@ const createColumns = ({
   ]
 }
 
-  const data = reactive<RowData[]>([
+const data = reactive<RowData[]>([
   {
     key: 0,
     index: 12,
@@ -218,12 +214,13 @@ sendMail (rowData) {
           }
         })
 },
-addTag (rowData) {
-  dialog.warning({
-          title: 'Use Render Function',
-          content: () => 'Content',
-          action: () => 'Action'
-        })
+addRow (rowData) {
+
+  // dialog.warning({
+  //         title: 'Use Render Function tag',
+  //         content: () => 'Content',
+  //         action: () => 'Action'
+  //       })
 }
 })
 const rowProps = (RowData) => {
@@ -234,7 +231,7 @@ onClick: () => {
   videoeditstore.setVideoStart(RowData)
 }
 }
-}//use it to jump to present time in video 
+}
 const pagination = {pageSize: 10,};
 </script>
 

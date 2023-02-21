@@ -21,10 +21,10 @@
       :scroll-x="1090"
     >
       <template #tableTitle>
-        <n-button type="primary" @click="showUploadNewMediaView"> 媒体文件上传 </n-button>
+        <n-button type="primary" @click="showUploadNewMediaView"> UploadMedia </n-button>
       </template>
       <template #toolbar>
-        <n-button type="primary" @click="reloadTable">刷新数据</n-button>
+        <n-button type="primary" @click="reloadTable">Refresh Data</n-button>
       </template>
     </BasicTable>
 

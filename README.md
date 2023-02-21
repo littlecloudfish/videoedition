@@ -1,28 +1,28 @@
-# 视频剪辑系统前端页面
+# video edit client side
 
-- 安装依赖
+- Install
 
 ```bash
 pnpm install
 
 ```
 
-- 运行
+- Run
 
 ```bash
 pnpm dev
 ```
 
-- 打包
+- Package
 
 ```bash
 pnpm build
 ```
 
-## 开发
+## development
 [icons](https://www.xicons.org/#/)
 
-## 更新日志
+## Log
 
 [CHANGELOG](./CHANGELOG.md)
 

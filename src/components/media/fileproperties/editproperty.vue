@@ -1,22 +1,22 @@
 <template>
         <n-card :bordered="false" class="proCard" size="small" :title="mediaFileRef.title">
-          <n-button dashed>导出字幕</n-button>
-          <n-button dashed>导出视频</n-button>
+          <n-button dashed>Import Subtitle</n-button>
+          <n-button dashed>Import Video</n-button>
         <n-descriptions label-placement="top" bordered :column="2" class="py-2.5">
             <n-descriptions-item label="ID">{{ mediaFileRef.mediaFile.id }}</n-descriptions-item>
-            <n-descriptions-item label="标题"
+            <n-descriptions-item label="Title"
             >
-              <input v-model="inputtitle" placeholder='上传标题' />
+              <input v-model="inputtitle" placeholder='Upload Title' />
             </n-descriptions-item>
-            <n-descriptions-item label="状态">
+            <n-descriptions-item label="Status">
             <n-tag type="success">
                {{ status() }}
             </n-tag>
             </n-descriptions-item>
-            <n-descriptions-item label="上传时间"
+            <n-descriptions-item label="UploadTime"
             >{{ mediaFileRef.mediaFile.createAt }}
             </n-descriptions-item>
-            <n-descriptions-item v-if="mediaFileRef.mediaFile.updateAt" label="更新时间"
+            <n-descriptions-item v-if="mediaFileRef.mediaFile.updateAt" label="Updated Time"
             >{{ mediaFileRef.mediaFile.updateAt }}
             </n-descriptions-item> 
         </n-descriptions>
@@ -30,7 +30,7 @@ import { MediaStatus } from '@/enums/mediaStatus';
 
   const mediaFileRef = reactive<any>({
     mediaFile: MediaFile,
-    title: '编辑媒体文件',
+    title: 'EditMediafile',
     mediaUrl: '',
     subtltleUrl: '',
   });
