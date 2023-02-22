@@ -1,5 +1,5 @@
 <template>
-    <!-- <div>{{ data }}</div> -->
+    <div>{{ data }}</div>
     <n-card :bordered="false" size="small" title="Subtitle" class="proCard">
       <n-data-table
       :bordered="false"
@@ -10,7 +10,6 @@
       :row-props="rowProps"
     />
     </n-card>
-    
 </template>
 
 <script lang="ts" setup>
@@ -31,7 +30,7 @@ type RowData = {
 }
 const videoeditstore = useVideoEditStore();
 
-const actions:Array<string> = ['insert row','next','addtag']
+const actions:Array<string> = ['insert row under','delete row']
 
 const createColumns = ({
   sendMail,
@@ -126,7 +125,6 @@ const createColumns = ({
             'title' : row.tags,
             'onAddTag' : (value)=>{
               row.tags.push(value)
-              // value = ''
             },
             'onRemoveTag' : (value) =>{
               row.tags.splice(value,1)
@@ -145,10 +143,10 @@ const createColumns = ({
             {
               size: 'small',
              onClick: () => {
-              if (tagKey == 'insert row'){
+              if (tagKey == 'insert row under'){
                 addRow(row)
               }
-              else if (tagKey == 'next'){
+              else if (tagKey == 'delete row'){
                 sendMail(row)
               }
               }
@@ -167,7 +165,7 @@ const createColumns = ({
 
 const data = reactive<RowData[]>([
   {
-    key: 0,
+    key: 10,
     index: 12,
     startAt: '00:12:13',
     endAt: '00:13:13',
@@ -177,7 +175,7 @@ const data = reactive<RowData[]>([
     tags: ['nice', 'developer']
   },
   {
-    key: 2,
+    key: 9,
     index: 32,
     startAt: '00:14:13',
     endAt: '00:15:13',
@@ -187,7 +185,7 @@ const data = reactive<RowData[]>([
     tags: ['wow']
   },
   {
-    key: 66,
+    key: 6,
     index: 12,
     startAt: '00:16:13',
     endAt: '00:17:13',
@@ -198,29 +196,37 @@ const data = reactive<RowData[]>([
   }
 ])
 
-
-
 const message = useMessage()
 const dialog = useDialog()
 const columns = createColumns({
 sendMail (rowData) {
-  dialog.warning({
-          title: 'Use Render Function',
-          content: () => 'Content',
-          action: (rowData) => {
-              return h(
-                NInput
-              )
-          }
-        })
-},
-addRow (rowData) {
+  delete data[data.indexOf(rowData)]
 
   // dialog.warning({
-  //         title: 'Use Render Function tag',
+  //         title: 'Use Render Function',
   //         content: () => 'Content',
-  //         action: () => 'Action'
+  //         action: (rowData) => {
+  //             return h(
+  //               NInput
+  //             )
+  //         }
   //       })
+},
+async addRow (rowData) {
+  const arrayindex = data.indexOf(rowData)
+  const adddata = reactive<RowData> (
+  {
+    key: 0,
+    index: 0,
+    startAt: '00:00:00',
+    endAt: '00:00:00',
+    text: 'null',
+    verified:false,
+    deleted: false,
+    tags: []
+  }
+)
+  data.splice(arrayindex+1,0,adddata)
 }
 })
 const rowProps = (RowData) => {
